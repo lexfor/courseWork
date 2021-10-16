@@ -25,7 +25,9 @@ export class CarRecognitionController {
     }),
   )
   async uploadedFile(@UploadedFile() file): Promise<CarDataInterface> {
-    const response = await this.carRecognitionService.recognize(file.path);
+    const response = await this.carRecognitionService.recognize(
+      `./${file.path}`.replace(/\\/g, '/'),
+    );
     return response;
   }
 }
